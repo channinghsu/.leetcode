@@ -18,30 +18,27 @@
  */
 class Solution {
    public:
+    // 层序遍历二叉树，返回每一层的节点值
     vector<vector<int>> levelOrder(TreeNode* root) {
-        queue<TreeNode*> que;   // 创建一个队列用于层序遍历
-        if (root != nullptr) que.push(root); // 将根节点入队
-        vector<vector<int>> res; // 存储层序遍历结果的二维向量
+        vector<vector<int>> res; // 存储结果的二维数组
+        if (!root) return res; // 如果根节点为空，直接返回空结果
+        queue<TreeNode*> q; // 使用队列进行层序遍历
+        q.push(root); // 将根节点入队
 
-        while (!que.empty()) {
-            int size = que.size(); // 当前层的节点个数
-            vector<int> vec;       // 存储当前层节点值的向量
-
-            for (int i = 0; i < size; i++) {
-                TreeNode* node = que.front(); // 从队列中取出一个节点
-                que.pop();                    // 出队
-
-                vec.push_back(node->val);     // 将节点值添加到当前层的向量中
-
-                if (node->left) que.push(node->left);   // 如果左子节点存在，将左子节点入队
-                if (node->right) que.push(node->right); // 如果右子节点存在，将右子节点入队
+        while (!q.empty()) { // 当队列不为空时，继续遍历
+            int size = q.size(); // 当前层的节点数
+            vector<int> row; // 存储当前层的节点值
+            for (int i = 0; i < size; i++) { // 遍历当前层的所有节点
+                TreeNode* node = q.front(); // 取出队首节点
+                q.pop(); // 将队首节点出队
+                row.push_back(node->val); // 将节点值存入当前层的数组
+                if (node->left) q.push(node->left); // 如果左子节点存在，将其入队
+                if (node->right) q.push(node->right); // 如果右子节点存在，将其入队
             }
-
-            res.push_back(vec); // 将当前层的向量添加到结果二维向量中
+            res.push_back(row); // 将当前层的节点值数组存入结果数组
         }
-
-        return res; // 返回层序遍历的结果
-    } right
+        return res; // 返回结果数组
+    }
 };
 
 // @lc code=end

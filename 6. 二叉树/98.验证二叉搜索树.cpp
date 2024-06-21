@@ -24,8 +24,8 @@ public:
         // 前
         bool left = isValidBST(root->left);
         // 中
-        if (pre != nullptr &&  pre->val >= root->val) return false;
-        pre = root; // 记录前一个节点
+        if (pre!=nullptr && root->val <=pre->val) return false;
+        pre = root;
         // 后
         bool right = isValidBST(root->right);
         return left && right;

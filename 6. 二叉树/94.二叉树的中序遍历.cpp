@@ -25,9 +25,9 @@ public:
         inOrder(cur->right, vec);
     }
     vector<int> inorderTraversal(TreeNode* root) {
-        vector<int> res;
-        inOrder(root, res);
-        return res;
+        vector<int> vec;
+        inOrder(root, vec);
+        return vec;
     }
 };
 // @lc code=end
