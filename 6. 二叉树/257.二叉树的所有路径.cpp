@@ -26,7 +26,7 @@ class Solution {
         }
         if (cur->left) traversal(cur->left, path + "->" , res); // 左
         if (cur->right) traversal(cur->right, path + "->", res); // 右
-            
+
     }
     vector<string> binaryTreePaths(TreeNode* root) {
         vector<string> res;

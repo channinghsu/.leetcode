@@ -28,15 +28,14 @@ class Solution {
     Node *connect(Node *root) {
         queue<Node *> que;
         if (root != nullptr) que.push(root);
+
         while (!que.empty()) {
             int size = que.size();
             for (int i = 0; i < size; i++) {
                 Node *cur = que.front();
                 que.pop();
                 // 若每层遍历到最后一个元素时使其next指向NULL，否则指向当前层的下一个元素
-                if (i < size - 1) {
-                    cur->next = que.front(); // 下一个元素是弹出后的队头元素
-                }
+                if (i < size - 1) cur->next = que.front(); // 下一个元素是弹出后的队头元素
                 if (cur->left) que.push(cur->left);
                 if (cur->right) que.push(cur->right);
             }

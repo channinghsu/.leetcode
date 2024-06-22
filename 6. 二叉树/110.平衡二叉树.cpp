@@ -18,6 +18,7 @@
  */
 class Solution {
 public:
+    // 计算树的高度，如果树不平衡则返回-1
     int getHight(TreeNode* root){
         if (root == nullptr) return 0;
         int left = getHight(root->left);
@@ -26,6 +27,7 @@ public:
         if (right == -1) return -1;
         return abs(left - right) > 1 ? -1 : 1 + max(left, right);
     }
+    // 判断树是否平衡
     bool isBalanced(TreeNode* root) {
         return getHight(root) == -1 ? false : true;
     }

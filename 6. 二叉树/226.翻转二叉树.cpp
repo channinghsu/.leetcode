@@ -28,7 +28,12 @@ class Solution {
                 que.pop();
                 swap(cur->left, cur->right);
                 if (cur->left) que.push(cur->left);
-                if (cur->right) que.push(cur->right);
+                if (cur->right) que.p                // Swap left and right children of current node
+                TreeNode *temp = cur->left;
+                cur->left = cur->right;
+                cur->right = temp;
+                ush(cur->right);
+
             }
         }
         return root;

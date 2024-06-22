@@ -17,24 +17,26 @@
  * };
  */
 class Solution {
-   private:
-    // 左闭右闭区间[left, right]
-    TreeNode* traversal(vector<int>& nums, int left, int right) {
+    // 递归构建平衡二叉搜索树
+    TreeNode* buildTree(vector<int>& nums, int left, int right) {
         // 递归终止条件
-        if (left > right) return nullptr;
-        // 找到中间节点
-        int mid = left + ((right - left) / 2);
-        // 将中间节点设为根节点
+        if (left > right) {
+            return nullptr;
+        }
+        // 取中间元素作为根节点
+        int mid = left + (right - left) / 2;
+        // 构建根节点
         TreeNode* root = new TreeNode(nums[mid]);
-        // 递归构造左右子树
-        root->left = traversal(nums, left, mid - 1);
-        root->right = traversal(nums, mid + 1, right);
+        // 构建左子树
+        root->left = buildTree(nums, left, mid - 1);
+        root->right = buildTree(nums, mid + 1, right);
         return root;
     }
 
    public:
+    // 将有序数组转换为平衡二叉搜索树
     TreeNode* sortedArrayToBST(vector<int>& nums) {
-        return traversal(nums, 0, nums.size() - 1);
+        return buildTree(nums, 0, nums.size() - 1);
     }
 };
 // @lc code=end
