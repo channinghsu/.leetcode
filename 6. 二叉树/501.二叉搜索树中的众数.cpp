@@ -23,8 +23,7 @@ class Solution {
     TreeNode* pre = NULL;
     vector<int> result;
     void searchBST(TreeNode* cur) {
-        if (cur == NULL)
-            return;
+        if (cur == NULL) return;
 
         searchBST(cur->left);  // 左
                                // 中
@@ -35,6 +34,7 @@ class Solution {
         } else {  // 与前一个节点数值不同
             count = 1;
         }
+
         pre = cur;  // 更新上一个节点
 
         if (count == maxCount) {  // 如果和最大值相同，放进result中
