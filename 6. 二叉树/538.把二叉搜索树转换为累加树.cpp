@@ -17,20 +17,19 @@
  * };
  */
 class Solution {
-   private:
-    int pre = 0; // 记录前一个节点的值
-    void traversal(TreeNode* cur) {  // 右中左遍历
+   public:
+    int pre = 0;
+    void dfs(TreeNode* cur) {
+        // 深度优先搜索（DFS）：dfs 函数用于遍历树，采用右-根-左的顺序，这样可以确保在遍历每个节点时已经累加了所有比它大的节点值。
         if (cur == nullptr) return;
-        traversal(cur->right);
+        dfs(cur->right);
         cur->val += pre;
         pre = cur->val;
-        traversal(cur->left);
+        dfs(cur->left);
+        return;
     }
-
-   public:
     TreeNode* convertBST(TreeNode* root) {
-        pre = 0;
-        traversal(root);
+        dfs(root);
         return root;
     }
 };

@@ -19,20 +19,20 @@
 class Solution {
 public:
     vector<double> averageOfLevels(TreeNode* root) {
+        queue<TreeNode*> q;
         vector<double> res;
-        queue<TreeNode*> que;
-        que.push(root);
-        while (!que.empty()){
-            int size = que.size();
-            double vals = 0; // 二叉树一层值的和
+        if (root != nullptr) q.push(root);
+        while (!q.empty()) {
+            int size = q.size();
+            double avarage = 0.0;
             for (int i = 0; i < size; i++) {
-                TreeNode* cur = que.front();
-                que.pop();
-                vals += cur->val;
-                if(cur->left) que.push(cur->left);
-                if(cur->right) que.push(cur->right);
+                TreeNode* cur = q.front();
+                q.pop();
+                if (cur->left) q.push(cur->left);
+                if (cur->right) q.push(cur->right);
+                avarage += cur->val;
             }
-            res.push_back(vals/size); // 平均值
+            res.push_back(avarage/size);
         }
         return res;
     }

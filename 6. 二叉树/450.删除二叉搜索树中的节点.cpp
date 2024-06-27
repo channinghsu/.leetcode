@@ -11,7 +11,7 @@
  *     int val;
  *     TreeNode *left;
  *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {} 
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
  *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
@@ -23,20 +23,17 @@ class Solution {
         if (root->val == key) {
             // 第二种情况：左右孩子都为空（叶子节点），直接删除节点， 返回NULL为根节点
             if (root->left == nullptr && root->right == nullptr) {
-                ///! 内存释放
                 delete root;
                 return nullptr;
             }
             // 第三种情况：其左孩子为空，右孩子不为空，删除节点，右孩子补位 ，返回右孩子为根节点
             else if (root->left == nullptr) {
-                ///! 内存释放
                 return root->right;
                 delete root;
             }
             // 第四种情况：其右孩子为空，左孩子不为空，删除节点，左孩子补位，返回左孩子为根节点
             else if (root->right == nullptr) {
-                ///! 内存释放
-                return root->left; 
+                return root->left;
                 delete root;
             }
             // 第五种情况：左右孩子节点都不为空，则将删除节点的左子树放到删除节点的右子树的最左面节点的左孩子的位置

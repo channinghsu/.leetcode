@@ -19,18 +19,18 @@
 class Solution {
 public:
     vector<int> largestValues(TreeNode* root) {
-        queue<TreeNode*> que;
-        if (root != nullptr) que.push(root);
+        queue<TreeNode* > q;
+        if (root != nullptr) q.push(root);
         vector<int> res;
-        while (!que.empty()) {
+        while(!q.empty()) {
+            int size = q.size();
             int max = INT_MIN;
-            int size = que.size();
-            for (int i = 0; i < size; i++) {
-                TreeNode* cur = que.front();
-                que.pop();
-                if(cur->left) que.push(cur->left);
-                if(cur->right) que.push(cur->right);
-                max = cur->val > max ? cur->val : max;
+            for (int i = 0; i < size; ++i) {
+                TreeNode* cur = q.front();
+                q.pop();
+                if (cur->left) q.push(cur->left);
+                if (cur->right) q.push(cur->right);
+                max = cur->val > max ? cur->val:max;
             }
             res.push_back(max);
         }

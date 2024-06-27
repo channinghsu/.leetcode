@@ -18,21 +18,16 @@
  */
 class Solution {
    public:
-    // 递归
     TreeNode* searchBST(TreeNode* root, int val) {
-        if (root == nullptr || root->val == val) return root;
-        TreeNode* res = nullptr;
-        if (root->val > val) res = searchBST(root->left, val);
-        if (root->val < val) res = searchBST(root->right, val);
-        return res;
-    }
-    // 迭代
-    TreeNode* searchBST(TreeNode* root, int val) {
-        while (root != nullptr) {
-            if (root->val > val) root = root->left;
-            else if root = root->right;
-            else return root;
-        }
+        if (root == nullptr) return nullptr;
+
+        if (root->val < val) return searchBST(root->right,val);
+        else if (root->val > val) return searchBST(root->left,val);
+        else return root;
+
+        root->left = searchBST(root->left,val);
+        root->right = searchBST(root->right,val);
+
         return nullptr;
     }
 };

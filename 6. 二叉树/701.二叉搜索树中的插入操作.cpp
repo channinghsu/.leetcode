@@ -19,15 +19,6 @@
 class Solution {
    public:
     TreeNode* insertIntoBST(TreeNode* root, int val) {
-        // 终止条件：当前节点为空，插入val
-        if (root == nullptr) {
-            TreeNode* node = new TreeNode(val);
-            return node;
-        }
-        // 搜索一条边
-        if (root->val > val) root->left = insertIntoBST(root->left, val);
-        if (root->val < val) root->right = insertIntoBST(root->right, val);
-        return root;
     }
 };
 // @lc code=end

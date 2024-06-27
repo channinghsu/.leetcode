@@ -17,26 +17,22 @@
  * };
  */
 class Solution {
-   private:
-    TreeNode* pre = nullptr;
-    int res = __INT_MAX__;
-    // 中序遍历将二叉搜索树转换为
-    void traversal(TreeNode* cur) {
-        if (cur == nullptr) return;
-        // 左
-        traversal(cur->left);
-        // 中
-        if (pre != nullptr)
-            res = min(res, cur->val - pre->val);
-        pre = cur;
-        // 右
-        traversal(cur->right);
-    }
-
    public:
+    int minInt = INT_MAX;
+    TreeNode* pre = nullptr;
+    void dfs(TreeNode* cur) {
+        if (cur == nullptr) return;
+        dfs(cur->left);
+        if (pre != nullptr) {
+            minInt = min(minInt, cur->val - pre->val);
+        }
+        pre = cur;
+        dfs(cur->right);
+        return;
+    }
     int getMinimumDifference(TreeNode* root) {
-        traversal(root);
-        return res;
+        dfs(root);
+        return minInt;
     }
 };
 // @lc code=end

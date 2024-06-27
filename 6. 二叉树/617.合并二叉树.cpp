@@ -16,21 +16,18 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-class Solution {
+class solution {
 public:
-    TreeNode* mergeTrees(TreeNode* root1, TreeNode* root2) {
-        // 终止条件:
+    treenode* mergetrees(treenode* root1, treenode* root2) {
         if (root1 == nullptr) return root2;
         if (root2 == nullptr) return root1;
-        
         // 前序遍历
-        TreeNode* node = new TreeNode(0);
-        node->val  = root1->val + root2->val; // 中
-        node->left = mergeTrees(root1->left, root2->left); // 左
-        node->right = mergeTrees(root1->right, root2->right); // 右
+        treenode* node = new treenode(0);
+        node->val = root1->val + root2->val;
+        node->left = mergetrees(root1->left,root2->left);
+        node->right = mergetrees(root1->right,root2->right);
         return node;
-        
-    }
+   }
 };
 // @lc code=end
 

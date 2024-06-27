@@ -28,27 +28,14 @@ public:
 class Solution {
 public:
     int maxDepth(Node* root) {
-        queue<Node*> que;
-        int depth = 0;
-        if (root != nullptr) que.push(root);
-        while (!que.empty()) {
-            int size = que.size();
-            depth++;
-            for (int i = 0; i < size; i++) {
-                Node* cur = que.front();
-                que.pop();
-                for (auto child : cur->children) {
-                    if(child) que.push(child);
-                }
-            }
+        if (root == nullptr) return 0;
+        int res = 0;
+
+        for (auto child : root->children) {
+            res = max(maxDepth(child), res);
         }
-        // if(root == nullptr) return 0;
-        // int depth = 0;
-        // for (Node* child : root->children) {
-        //     depth = max(maxDepth(child), depth); 
-        // }
-        // return depth + 1;
-        return depth;
+
+        return res+1;
     }
 };
 // @lc code=end
