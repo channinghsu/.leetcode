@@ -6,30 +6,28 @@
 
 // @lc code=start
 class Solution {
-   public:
+    private:
     vector<vector<int>> res;
     vector<int> path;
-
-    void backtracing(int n, int k, int sum, int startIndex) {
-        if (path.size() == k) {
-            if (sum == n) {
-                res.push_back(path);
-                return;
-            }
+    int sum = 0;
+    void dfs(int k, int n, int init) {
+        if (path.size() == k && sum == n) {
+            res.push_back(path);
+            return;
         }
 
-        for (int i = startIndex; i <= 9; i++) {
-            sum += i;
+        for (int i = init; i <=9; ++i) {
             path.push_back(i);
-            backtracing(n, k, sum, i + 1);
+            sum += i;
+            dfs(k, n, init + 1);
             path.pop_back();
             sum -= i;
         }
+        return;
     }
-
    public:
     vector<vector<int>> combinationSum3(int k, int n) {
-        backtracing(n, k, 0, 1);
+        dfs(k, n, 1);
         return res;
     }
 };
