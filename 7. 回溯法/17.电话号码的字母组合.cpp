@@ -1,47 +1,44 @@
-/*
- * @lc app=leetcode.cn id=17 lang=cpp
- *
- * [17] 电话号码的字母组合
- */
+#include <string>
+#include <vector>
+using namespace std;
 
-// @lc code=start
 class Solution {
-   private:
-    vector<string> res;
-    string s;
-    const string letterMap[10]{
-        "",
-        "",
-        "abc",
-        "def",
-        "ghi",
-        "jkl",
-        "mno",
-        "pqrs",  // 7
-        "tuv",   // 8
-        "wxyz",  // 9
+private:
+    const string letterMap[10] = {
+        "",    // 0
+        "",    // 1
+        "abc", // 2
+        "def", // 3
+        "ghi", // 4
+        "jkl", // 5
+        "mno", // 6
+        "pqrs",// 7
+        "tuv", // 8
+        "wxyz" // 9
     };
-    void backtracking(const string& digits, int index) {
+
+public:
+    vector<string> result;
+    string s;
+
+    void dfs(const string& digits, int index) {
         if (index == digits.size()) {
-            res.push_back(s);
+            result.push_back(s);
             return;
         }
-        int digit = digits[index] - '0';
-        string letters = letterMap[digit];
-        for (int i = 0; i < letters.size(); i++) {
-            s.push_back(letters[i]);
-            backtracking(digits, index + 1);
-            s.pop_back();
+        int digit = digits[index] - '0';        // Convert current digit character to integer
+        const string& letters = letterMap[digit]; // Get corresponding letters
+
+        for (char letter : letters) {
+            s.push_back(letter);                // Add current letter to combination
+            dfs(digits, index + 1);             // Recurse to next digit
+            s.pop_back();                       // Backtrack to explore next letter
         }
     }
 
-   public:
     vector<string> letterCombinations(string digits) {
-        s.clear();
-        res.clear();
-        if (digits.size() == 0) return res;
-        backtracking(digits, 0);
-        return res;
+        if (digits.empty()) return result;      // Return empty result if input is empty
+        dfs(digits, 0);                         // Start DFS from index 0
+        return result;
     }
 };
-// @lc code=end
