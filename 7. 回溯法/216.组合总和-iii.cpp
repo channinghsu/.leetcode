@@ -19,7 +19,7 @@ class Solution {
         for (int i = init; i <=9; ++i) {
             path.push_back(i);
             sum += i;
-            dfs(k, n, init + 1);
+            dfs(k, n, i + 1);
             path.pop_back();
             sum -= i;
         }
