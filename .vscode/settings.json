@@ -1,4 +1,8 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
-    "C_Cpp.vcFormat.newLine.closeBraceSameLine.emptyType": true
+    "C_Cpp.vcFormat.newLine.closeBraceSameLine.emptyType": true,
+    "files.associations": {
+        "vector": "cpp",
+        "iosfwd": "cpp"
+    }
 }

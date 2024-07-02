@@ -16,22 +16,29 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-class Solution {
-  public:
-    vector<vector<int>> levelOrderBottom(TreeNode *root) {
-        queue<TreeNode*> que;
-        if (root != nullptr) que.push(root);
+class Solution
+{
+public:
+    vector<vector<int>> levelOrderBottom(TreeNode *root)
+    {
+        queue<TreeNode *> que;
+        if (root != nullptr)
+            que.push(root);
         vector<vector<int>> res;
 
-        while (!que.empty()) {
+        while (!que.empty())
+        {
             int size = que.size();
             vector<int> vec;
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++)
+            {
                 TreeNode *cur = que.front();
                 que.pop();
                 vec.push_back(cur->val);
-                if (cur->left) que.push(cur->left);
-                if (cur->right) que.push(cur->right);
+                if (cur->left)
+                    que.push(cur->left);
+                if (cur->right)
+                    que.push(cur->right);
             }
             // 只需要从顶部添加数组，这样就可以实现倒序输出二叉树
             res.insert(res.begin(), vec);
