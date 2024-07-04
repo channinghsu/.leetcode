@@ -5,35 +5,34 @@
  */
 
 // @lc code=start
+#include <vector>
+using namespace std;
+
 class Solution {
-   private:
-    vector<vector<int>> res;
-    vector<int> path;
-    void backtracking(vector<int>& nums, int startIndex) {
-        if (path.size() > 1) {
+private:
+    vector<int> path;           // 存放当前递增子序列的路径
+    vector<vector<int>> res;    // 存放所有符合条件的递增子序列
+
+    void dfs(vector<int>& nums, int start) {
+        int array[201]= {0};   // 使用数组做哈希表，范围是 [-100, 100]
+        if (path.size() > 1)    // 当路径长度大于1时，将其加入结果集
             res.push_back(path);
-        }
-        // unordered_set<int> uset;
-        int used[201] = {0};//用数组来做哈希，提高效率。
-        for (int i = startIndex; i < nums.size(); i++) {
-            if ((!path.empty() && nums[i] < path.back()) || /*uset.find(nums[i]) != uset.end()*/ used[nums[i]+100] == 1) {
-                continue;
+
+        for (int i = start; i < nums.size(); ++i) {
+            if (array[nums[i] + 100] || (!path.empty() && nums[i] < path.back())) {
+                continue;       // 如果当前元素已经被使用过或者不满足递增条件，则跳过
             }
-            // uset.insert(nums[i]);
-            used[nums[i]+100] = 1;
-            path.push_back(nums[i]);
-            backtracking(nums, i + 1);
-            path.pop_back();
+            array[nums[i] + 100]++; // 标记当前元素为已使用
+            path.push_back(nums[i]); // 将当前元素加入路径
+            dfs(nums, i + 1);        // 递归进入下一层
+            path.pop_back();         // 回溯，撤销选择
         }
-        return;
     }
 
-   public:
+public:
     vector<vector<int>> findSubsequences(vector<int>& nums) {
-        path.clear();
-        res.clear();
-        backtracking(nums, 0);
-        return res;
+        dfs(nums, 0);   // 调用深度优先搜索函数开始查找递增子序列
+        return res;     // 返回结果集
     }
 };
 // @lc code=end

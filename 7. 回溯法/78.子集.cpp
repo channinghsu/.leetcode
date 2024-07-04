@@ -5,27 +5,28 @@
  */
 
 // @lc code=start
+#include <vector>
+using namespace std;
+
 class Solution {
-private:
-    vector<vector<int>> result;
+  private:
+    vector<vector<int>> res;
     vector<int> path;
-    void backtracking(vector<int>& nums, int startIndex) {
-        result.push_back(path); // 收集子集，要放在终止条件的上面，否则会漏掉自己
-        // if (startIndex >= nums.size()) { // 终止条件可以不加
-        //     return;
-        // }
-        for (int i = startIndex; i < nums.size(); i++) {
+
+    void dfs(const vector<int> &nums, int start) {
+        res.push_back(path);
+        for (int i = start; i < nums.size(); ++i){
             path.push_back(nums[i]);
-            backtracking(nums, i + 1);
+            dfs(nums, i + 1);
             path.pop_back();
         }
     }
-public:
-    vector<vector<int>> subsets(vector<int>& nums) {
-        result.clear();
-        path.clear();
-        backtracking(nums, 0);
-        return result;
+
+  public:
+    vector<vector<int>> subsets(vector<int> &nums) {
+        res.clear();
+        dfs(nums, 0);
+        return res;
     }
 };
 
