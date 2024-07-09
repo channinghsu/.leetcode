@@ -7,17 +7,19 @@
 // @lc code=start
 class Solution {
     private:
-    bool isValid(vector<vector<char>>& board, int row, int col, char c) {
-        for (int i = 0; i < 9; ++i) {
-            if(board[i][col] == c) return false;
-            if(board[row][i] == c) return false;
-            if (board[3 * (row / 3) + i / 3][3 * (col / 3) + i % 3] == c) return false;
-        }
-        return true;
+bool Solution::isValid(vector<vector<char>> &board, int row, int col, char c) {
+    // 检查行、列、九宫格是否有重复
+    for (int i = 0; i < 9; i++) {
+        // 检查行和列
+        if (board[i][col] == c) return false;
+        if (board[row][i] == c) return false;
+        // 检查九宫格
+        if (board[3 * (row / 3) + i / 3][3 * (col / 3) + i % 3] == c) return false;
     }
+    return true;
+}
 
     bool dfs(vector<vector<char>>& board) {
-
         for (int row = 0 ; row < 9; ++row) {
             for (int col = 0; col < 9; ++col) {
                 if(board[row][col] != '.') continue;
@@ -34,7 +36,6 @@ class Solution {
 
 public:
         dfs(board);
-        dfs(board,0,0);
         return;
     }
 };
