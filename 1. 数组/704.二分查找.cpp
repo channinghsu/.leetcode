@@ -12,10 +12,10 @@ public:
         int right = nums.size();
 
         while (left < right) {
-            int mid = left + (right - left) / 2;
-            if (nums[mid] > target) {
+            int mid = (right - left) / 2 + left;
+            if (target < nums[mid]) {
                 right = mid;
-            } else if (nums[mid] < target){
+            } else if (nums[mid] < target) {
                 left = mid + 1;
             } else {
                 return mid;
