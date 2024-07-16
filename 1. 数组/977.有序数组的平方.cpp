@@ -6,24 +6,23 @@
 
 // @lc code=start
 class Solution {
-public:
-    vector<int> sortedSquares(vector<int>& A) {
-        int i = 0;
-        int j = A.size() - 1;
-        int k = j;
-        vector<int> result(A.size(), 0);
-        while (i <= j)
-        {
-            if(A[i] * A[i] > A[j] * A[j]){
-                result[k--] = A[i] * A[i];
-                i++;
-            } else {
-                result[k--] = A[j] * A[j];
-                j--;
-            }
-        }
-        return result;
+ public:
+  vector<int> sortedSquares(vector<int>& nums) {
+    int left = 0;
+    int right = nums.size() - 1;
+    vector<int> res(nums.size());
+    int pos = right;
+
+    while (left <= right) {
+      if (nums[left] * nums[left] > nums[right] * nums[right]) {
+        res[pos--] = nums[left] * nums[left];
+        left++;
+      } else {
+        res[pos--] = nums[right] * nums[right];
+        right--;
+      }
     }
+    return res;
+  }
 };
 // @lc code=end
-

@@ -6,20 +6,23 @@
 
 // @lc code=start
 class Solution {
-public:
-    int minSubArrayLen(int target, vector<int>& nums) {
-        int result = __INT32_MAX__; //  长度最小子数组
-        int i = 0; // 滑动窗口起始位置
-        int sum = 0; // 滑动窗口数值之和
-        for (int j = 0; j < nums.size(); j++){
-            sum += nums[j]; 
-            while(sum >= target){
-                result = min(result, j - i + 1);
-                sum -= nums[i++];
-            }
-        }
-        return result == __INT32_MAX__ ? 0 : result;
-    }
-};
-// @lc code=end
+ public:
+  int minSubArrayLen(int target, vector<int>& nums) {
+    int left = 0;
+    int right = 0;
+    int sum = 0;
+    int res = INT_MAX;
 
+    while (right < nums.size()) {
+      sum += nums[right];
+      while (sum >= target) {
+        res = min(res, right - left + 1);
+        sum -= nums[left];
+        left++;
+      }
+      right++;
+    }
+    return res == INT_MAX ? 0 : res;
+  }
+  };
+  // @lc code=end
