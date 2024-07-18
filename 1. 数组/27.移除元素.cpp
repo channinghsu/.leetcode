@@ -8,8 +8,14 @@
 class Solution {
 public:
     int removeElement(vector<int>& nums, int val) {
-        remove(nums.begin(),nums.end(),val);
-        erase();
+        int slow = 0; // 慢指针
+        for (int fast = 0; fast < nums.size(); fast++){
+            if (val != nums[fast]){
+                nums[slow] = nums[fast];
+                slow++;
+            }
+        }
+        return slow;
     }
 };
 // @lc code=end
