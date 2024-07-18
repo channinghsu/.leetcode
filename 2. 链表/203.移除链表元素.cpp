@@ -16,26 +16,25 @@
  * };
  */
 class Solution {
-public:
-    ListNode* removeElements(ListNode* head, int val) {
-        ListNode* dummyHead = new ListNode(0);
-        dummyHead->next = head;
-        // 删除非头结点
-        ListNode* cur = dummyHead;
-        while (cur != NULL && cur->next != NULL) {
-            if (cur->next->val == val)
-            {
-                ListNode* tmp = cur->next;
-                cur->next = cur->next->next;
-                delete tmp;
-            } else {
-                cur = cur->next;
-            }
-        }
-        head = dummyHead->next;
-        delete dummyHead;
-        return head;
-    }
-};
-// @lc code=end
+ public:
+ public:
+  ListN removeElements(ListNode* head, int val) {
+    // 虚拟头结点
+    ListNode* dummyHead = new ListNode(0);
+    dummyHead->next = head;
 
+    ListNode* cur = dummyHead;
+    while (cur->next) {
+      if (cur->next->val == val) {
+        ListNode* tmp = cur->next;
+        cur->next = cur->next->next;
+        delete tmp;
+      } else {
+        cur = cur->next;
+      }
+    }
+    head = dummyHead->next;
+    delete dummyHead;
+    return head;
+  };
+  // @lc code=end

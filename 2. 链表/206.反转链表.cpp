@@ -18,14 +18,14 @@
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-        ListNode* temp; // 保存cur的下一个节点
-        ListNode* cur = head; // 当前节点
-        ListNode* pre = NULL; // 前一个节点
-        while(cur){ // 当前节点不为空
-            temp = cur->next; 
-            cur->next = pre; // 凡转
-            pre = cur; // pre向前移
-            cur = temp; // cur向前移
+        ListNode* cur = head;
+        ListNode* pre = nullptr;
+
+        while (cur) {
+            ListNode* tmp = cur->next;
+            cur->next = pre;
+            pre = cur;
+            cur = tmp;
         }
         return pre;
     }
