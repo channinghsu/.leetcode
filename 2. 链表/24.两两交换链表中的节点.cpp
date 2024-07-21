@@ -16,28 +16,25 @@
  * };
  */
 class Solution {
-public:
-    ListNode* swapPairs(ListNode* head) {
-        // 虚拟头结点
-        ListNode* dummyHead = new ListNode(0);
-        dummyHead->next = head; 
-        ListNode* cur = dummyHead;
+ public:
+  ListNode* swapPairs(ListNode* head) {
+    ListNode* dummyHead = new ListNode(0);
 
-        while (cur->next != nullptr && cur->next->next != nullptr)
-        {
-            ListNode* temp = cur->next;
-            ListNode* temp1 = cur->next->next->next;
-            // 两两交换
-            cur->next = cur->next->next;
-            cur->next->next = temp;
-            cur->next->next->next = temp1;
-            cur = cur->next->next;
-        }
-        head = dummyHead->next;
-        delete dummyHead;
-        dummyHead = nullptr;
-        return head;
+    ListNode* cur = dummyHead;
+    dummyHead->next = head;
+
+    while (cur->next != nullptr && cur->next->next) {
+      ListNode* tmp = cur->next;
+      ListNode* tmp1 = cur->next->next->next;
+
+      cur->next = cur->next->next;
+      cur->next->next = tmp;
+      cur->next->next->next = tmp1;
+
+      cur = cur->next->next;
     }
+
+    return dummyHead->next;
+  }
 };
 // @lc code=end
-

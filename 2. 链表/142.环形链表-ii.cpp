@@ -16,27 +16,22 @@
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
-        // 判断链表是否有环
-        // 定义快慢指针
         ListNode* slow = head;
         ListNode* fast = head;
 
-        while (fast != NULL && fast->next != NULL)
-        {
-            fast = fast->next->next;
+        while (fast!= nullptr && fast->next != nullptr) {
             slow = slow->next;
-            // 如何有环
-            if (fast == slow){
-                ListNode* index1 = head;
-                ListNode* index2 = slow;
-                while (index1 != index2){
-                    index1 = index1->next;
-                    index2 = index2->next;
+            fast = fast->next->next;
+            if (slow == fast) {
+                ListNode* entry = head;
+                while (entry != slow) {
+                    entry = entry->next;
+                    slow = slow->next;
                 }
-                return index1;
+                return entry;
             }
         }
-         return NULL;
+        return nullptr;
     }
 };
 // @lc code=end
