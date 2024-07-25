@@ -4,9 +4,9 @@
  * [322] 零钱兑换
  */
 
-// @lc code=start
+ // @lc code=start
 class Solution {
- public:
+public:
   int coinChange(vector<int>& coins, int amount) {
     // dp[j] 的含义：可以凑成 j 的最少的硬币个数
     vector<int> dp(amount + 1, INT_MAX);

@@ -4,9 +4,9 @@
  * [213] 打家劫舍 II
  */
 
-// @lc code=start
+ // @lc code=start
 class Solution {
- public:
+public:
   int rob(vector<int>& nums) {
     int n = nums.size();
     if (n == 1) return nums[0];
@@ -20,7 +20,7 @@ class Solution {
     dp[start] = nums[start];
     dp[start + 1] = max(nums[start], nums[start + 1]);
 
-    for (int i = start + 2; i <= end ; i++) {
+    for (int i = start + 2; i <= end; i++) {
       dp[i] = max(dp[i - 1], dp[i - 2] + nums[i]);
     }
     return dp[end];

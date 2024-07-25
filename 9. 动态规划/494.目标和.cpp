@@ -4,9 +4,9 @@
  * [494] 目标和
  */
 
-// @lc code=start
+ // @lc code=start
 class Solution {
- public:
+public:
   int findTargetSumWays(vector<int>& nums, int S) {
     // p 正数的和
     // sum - p 负数的和

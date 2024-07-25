@@ -4,9 +4,9 @@
  * [70] 爬楼梯
  */
 
-// @lc code=start
+ // @lc code=start
 class Solution {
- public:
+public:
   int climbStairs(int n) {
     // 转化为背包问题
     // dp[j]：总台阶为 j 的不同的方法和

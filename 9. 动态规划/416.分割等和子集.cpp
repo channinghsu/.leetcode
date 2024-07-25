@@ -4,18 +4,18 @@
  * [416] 分割等和子集
  */
 
-// @lc code=start
+ // @lc code=start
 class Solution {
- public:
+public:
   bool canPartition(vector<int>& nums) {
     int sum = accumulate(nums.begin(), nums.end(), 0);
     if (sum % 2) return false;
     int target = sum / 2;
-    vector<bool> dp(target+1,0);
+    vector<bool> dp(target + 1, 0);
     dp[0] = true;
     for (int num : nums) {
       for (int j = target; j >= num; j--) {
-        dp[j] = dp[j] || dp[j-num];
+        dp[j] = dp[j] || dp[j - num];
       }
     }
     return dp[target];
