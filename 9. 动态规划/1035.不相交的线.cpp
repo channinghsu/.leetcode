@@ -1,20 +1,20 @@
 /*
- * @lc app=leetcode.cn id=1143 lang=cpp
+ * @lc app=leetcode.cn id=1035 lang=cpp
  *
- * [1143] 最长公共子序列
+ * [1035] 不相交的线
  */
 
-// @lc code=start
+ // @lc code=start
 class Solution {
 public:
-    int longestCommonSubsequence(string A, string B) {
-        int n1 = A.size();
-        int n2 = B.size();
-        // dp[i][j] A[i]  结尾和 B[j]结尾 的数组的最长重复子数组
+    int maxUncrossedLines(vector<int>& nums1, vector<int>& nums2) {
+        int n1 = nums1.size();
+        int n2 = nums2.size();
+
         vector<vector<int>> dp(n1 + 1, vector<int>(n2 + 1, 0));
         for (int i = 1; i <= n1; i++) {
             for (int j = 1; j <= n2; j++) {
-                if (A[i - 1] == B[j - 1]) {
+                if (nums1[i - 1] == nums2[j - 1]) {
                     dp[i][j] = dp[i - 1][j - 1] + 1;
                 } else {
                     dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
@@ -22,7 +22,6 @@ public:
             }
         }
         return dp[n1][n2];
-
     }
 };
 // @lc code=end

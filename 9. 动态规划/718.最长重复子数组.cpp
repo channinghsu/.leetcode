@@ -13,8 +13,6 @@ public:
         int n2 = B.size();
         // dp[i][j] A[i]  结尾和 B[j]结尾 的数组的最长重复子数组
         vector<vector<int>> dp(n1 + 1, vector<int>(n2 + 1, 0));
-
-        dp[0][0] = 0;
         int res = 0;
 
         for (int i = 1; i <= n1; i++) {
