@@ -10,12 +10,13 @@ public:
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
         int n1 = nums1.size();
         int n2 = nums2.size();
+
         stack<int> s;
         vector<int> res;
         unordered_map<int,int> map;
 
         for (int i = 0; i < n2; i++) {
-            while (!s.empty() && s.top() < nums2[i]) {
+            while (!s.empty() && nums2[i] > s.top()) {
                 map[s.top()] = nums2[i];
                 s.pop();
             }
@@ -32,5 +33,3 @@ public:
         return res;
     }
 };
-// @lc code=end
-

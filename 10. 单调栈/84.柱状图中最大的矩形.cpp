@@ -4,8 +4,8 @@
  * [84] 柱状图中最大的矩形
  */
 
-// @lc code=start
-// 版本二
+ // @lc code=start
+ // 版本二
 class Solution {
 public:
     int largestRectangleArea(vector<int>& heights) {
@@ -13,19 +13,20 @@ public:
         heights.insert(heights.begin(), 0); // 数组头部加入元素0
         heights.push_back(0); // 数组尾部加入元素0
         st.push(0);
-        int result = 0;
+        int n = heights.size();
 
-        for (int i = 1; i < heights.size(); i++) {
+        int res = 0;
+        for (int i = 1; i < n; i++) {
             while (heights[i] < heights[st.top()]) {
                 int mid = st.top();
                 st.pop();
-                int w = i - st.top() - 1;
                 int h = heights[mid];
-                result = max(result, w * h);
+                int w = i - st.top() - 1;
+                res = max(res,h*w);
             }
             st.push(i);
         }
-        return result;
+        return res;
     }
 };
 // @lc code=end
