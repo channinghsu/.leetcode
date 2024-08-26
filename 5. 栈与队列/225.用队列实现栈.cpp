@@ -9,7 +9,7 @@ class MyStack {
 public:
     queue<int> q;
     MyStack() {}
-    
+
     void push(int x) {
         q.push(x);
     }
@@ -24,11 +24,11 @@ public:
         q.pop();
         return res;
     }
-    
+
     int top() {
         return q.back();
     }
-    
+
     bool empty() {
         return q.empty();
     }

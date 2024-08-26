@@ -1,38 +1,24 @@
-/*
- * @lc app=leetcode.cn id=530 lang=cpp
- *
- * [530] 二叉搜索树的最小绝对差
- */
-
-// @lc code=start
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
 class Solution {
-   public:
-    int minInt = INT_MAX;
-    TreeNode* pre = nullptr;
-    void dfs(TreeNode* cur) {
+public:
+    // 深度优先搜索（中序遍历），寻找最小绝对差
+    void dfs(TreeNode* cur, TreeNode*& pre, int& res) {
         if (cur == nullptr) return;
-        dfs(cur->left);
+        // 递归遍历左子树
+        dfs(cur->left, pre, res);
+        // 更新最小绝对差
         if (pre != nullptr) {
-            minInt = min(minInt, cur->val - pre->val);
+            res = min(res, cur->val - pre->val);
         }
+        // 更新前驱节点
         pre = cur;
-        dfs(cur->right);
-        return;
+        // 递归遍历右子树
+        dfs(cur->right, pre, res);
     }
+
     int getMinimumDifference(TreeNode* root) {
-        dfs(root);
-        return minInt;
+        int res = INT_MAX;
+        TreeNode* pre = nullptr;
+        dfs(root, pre, res);
+        return res;
     }
 };
-// @lc code=end

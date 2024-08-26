@@ -18,13 +18,13 @@ class Solution {
 public:
     TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q) {
 
-        if (root == nullptr || root == p || root == q) return root;
-        root->left = lowestCommonAncestor(root->left,p,q);
-        root->right = lowestCommonAncestor(root->right,p,q);
 
-        if (root->left && root->right) return root;
-        if (root->left == nullptr) return root->right;
-        if (root->right == nullptr) return root->left;
+        if (root == nullptr || root == q || root == p) return root;
+        TreeNode* left = lowestCommonAncestor(root->left, p,q);
+        TreeNode* right = lowestCommonAncestor(root->right, p,q);
+        if (left != nullptr && right != nullptr) return root;
+        if (left == nullptr) return right;
+        if (right == nullptr) return left;
         return nullptr;
     }
 };
