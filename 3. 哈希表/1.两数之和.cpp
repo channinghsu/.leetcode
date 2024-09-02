@@ -4,23 +4,20 @@
  * [1] 两数之和
  */
 
-// @lc code=start
+ // @lc code=start
 class Solution {
- public:
+public:
   vector<int> twoSum(vector<int>& nums, int target) {
-    unordered_map<int, int> map;
-    vector<int> res;
 
+    unordered_map<int, int> map;
     for (int i = 0; i < nums.size(); i++) {
-      if (map.find(target - nums[i]) != map.end()) {
-        res.push_back(map[target - nums[i]]);
-        res.push_back(i);
-        return res;
-      } else {
-        map[nums[i]] = i;
+      int num = target - nums[i];
+      if (map.count(num)) {
+        return{i,map[num]};
       }
+      map[nums[i]] = i;
     }
-    return res;
+    return {};
   }
 };
 // @lc code=end

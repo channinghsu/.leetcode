@@ -4,10 +4,10 @@
  * [349] 两个数组的交集
  */
 
-// @lc code=start
+ // @lc code=start
 class Solution {
- public:
-  vector<int> intersection(vector<int> &nums1, vector<int> &nums2) {
+public:
+  vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
     unordered_set<int> set(nums1.begin(), nums1.end());
     unordered_set<int> res;
 
