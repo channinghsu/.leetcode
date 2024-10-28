@@ -4,25 +4,26 @@
  * [142] 环形链表 II
  */
 
-// @lc code=start
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
+ // @lc code=start
+ /**
+  * Definition for singly-linked list.
+  * struct ListNode {
+  *     int val;
+  *     ListNode *next;
+  *     ListNode(int x) : val(x), next(NULL) {}
+  * };
+  */
 class Solution {
 public:
-    ListNode *detectCycle(ListNode *head) {
-        ListNode* slow = head;
+    ListNode* detectCycle(ListNode* head) {
         ListNode* fast = head;
+        ListNode* slow = head;
 
-        while (fast!= nullptr && fast->next != nullptr) {
-            slow = slow->next;
+        while (fast != nullptr && fast->next != nullptr) {
             fast = fast->next->next;
-            if (slow == fast) {
+            slow = slow->next;
+
+            if (fast == slow) {
                 ListNode* entry = head;
                 while (entry != slow) {
                     entry = entry->next;
